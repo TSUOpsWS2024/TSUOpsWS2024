@@ -3,11 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFC2D", "WFC2D\WFC2D.csproj", "{7BD03BE0-1132-4D9B-8750-BB38D61EF2A7}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BD03BE0-1132-4D9B-8750-BB38D61EF2A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD03BE0-1132-4D9B-8750-BB38D61EF2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD03BE0-1132-4D9B-8750-BB38D61EF2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD03BE0-1132-4D9B-8750-BB38D61EF2A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8ED94FAF-0C6C-4827-AC43-3AFE2DBA4785}
+		SolutionGuid = {EA5E04E5-C971-4A1C-B02C-A46389A2EEFB}
 	EndGlobalSection
 EndGlobal
