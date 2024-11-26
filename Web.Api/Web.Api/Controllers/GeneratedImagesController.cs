@@ -59,5 +59,14 @@ namespace Web.Api.Controllers
             _context.SaveChanges();
             return new JsonResult(NoContent());
         }
+
+        //GetAll
+        [HttpGet("/GetAll")]
+        public JsonResult GetAll()
+        {
+            var result = _context.GeneratedImages.ToList();
+
+            return new JsonResult(Ok(result));
+        }
     }
 }
