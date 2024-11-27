@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web.Api.Models;
 using Web.Api.Data;
 using Web.Api.Services;
+using System.IO;
 
 namespace Web.Api.Controllers
 {
@@ -17,58 +18,17 @@ namespace Web.Api.Controllers
             _context = context;
         }
 
-        //Create/Edit
-        [HttpPost]
-        public JsonResult CreateEdit(GeneratedImage image)
-        {
-            if (image.Id == 0)
-            {
-                GeneratedImagesService.Work();
-                _context.GeneratedImages.Add(image);
-            } else
-            {
-                var imageInDb = _context.GeneratedImages.Find(image.Id);
-
-                if (imageInDb == null)
-                    return new JsonResult(NotFound());
-
-                imageInDb = image;
-            }
-
-            _context.SaveChanges();
-            return new JsonResult(Ok(image));
-        }
-
         //Get
         [HttpGet]
-        public JsonResult Get(int id)
+        public async Task<IActionResult> Download()
         {
-            var result = _context.GeneratedImages.Find(id);
-            if (result == null) 
-                return new JsonResult(NotFound());
-            return new JsonResult(Ok(result));
-        }
+            var filestream = GeneratedImagesService.Work();
+            if (filestream != null)
+            {
+                return File(filestream, "application/octet-stream", "Result.png");
+            }
+            return new JsonResult(NotFound());
 
-        //Delete
-        [HttpDelete]
-        public JsonResult Delete(int id)
-        {
-            var result = _context.GeneratedImages.Find(id);
-            if (result == null)
-                return new JsonResult(NotFound());
-
-            _context.GeneratedImages.Remove(result);
-            _context.SaveChanges();
-            return new JsonResult(NoContent());
-        }
-
-        //GetAll
-        [HttpGet("/GetAll")]
-        public JsonResult GetAll()
-        {
-            var result = _context.GeneratedImages.ToList();
-
-            return new JsonResult(Ok(result));
         }
     }
 }
