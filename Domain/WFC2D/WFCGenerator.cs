@@ -87,7 +87,8 @@ namespace WFC2D
         /// <param name="seed">Сид для генератора случайных чисел.</param>
         public static void GenerateFromJson(string tileSetName, int areaH, int areaW, int outerTileId, int seed)
         {
-            var tileSet = DataConverter.LoadFromFile(Path.Combine("TileSets", tileSetName, "data.json"));
+            var path = Path.GetFullPath("../../../");
+            var tileSet = DataConverter.LoadFromFile(Path.Join(path, "TileSets", tileSetName, "data.json"));
             Generate(tileSet, areaH, areaW, outerTileId, seed);
         }
 
@@ -186,7 +187,8 @@ namespace WFC2D
         /// </summary>
         private static void ExecuteWFCWithHistory()
         {
-            var stepsFolder = "GenerationSteps";
+            var path = Path.GetFullPath("../../../");
+            var stepsFolder = Path.Join(path, "GenerationSteps");
 
             // Очищаем папку перед сохранением
             if (Directory.Exists(stepsFolder))
@@ -244,7 +246,8 @@ namespace WFC2D
         /// </summary>
         private static void SaveGenerationResultImage()
         {
-            var resultFolder = "Result";
+            var path = Path.GetFullPath("../../../");
+            var resultFolder = Path.Join(path, "Result");
             var resultFileName = $"WFC R h{AreaHeight} w{AreaWidth} s{Seed}.png";
             var resultPath = Path.Combine(resultFolder, resultFileName);
             // Очищаем папку перед сохранением
