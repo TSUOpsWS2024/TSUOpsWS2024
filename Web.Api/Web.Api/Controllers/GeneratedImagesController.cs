@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Web.Api.Models;
 using Web.Api.Data;
+using Web.Api.Services;
 
 namespace Web.Api.Controllers
 {
@@ -22,6 +23,7 @@ namespace Web.Api.Controllers
         {
             if (image.Id == 0)
             {
+                GeneratedImagesService.Work();
                 _context.GeneratedImages.Add(image);
             } else
             {

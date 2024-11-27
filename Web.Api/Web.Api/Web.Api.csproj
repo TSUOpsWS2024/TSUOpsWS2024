@@ -8,7 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
+    <PackageReference Include="SkiaSharp" Version="2.88.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="WFC2D">
+      <HintPath>..\..\Domain\WFC2D\bin\Debug\net8.0\WFC2D.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -45,9 +45,11 @@ namespace WFC2D
         /// </summary>
         /// <param name="json">Строка JSON.</param>
         /// <returns>Экземпляр TileSet.</returns>
-        public static TileSet Deserialize(string json)
+        public static TileSet Deserialize(string json, string filePath)
         {
+            var dirName = Path.GetDirectoryName(filePath);
             var dto = JsonSerializer.Deserialize<TileSetDTO>(json);
+
             if (dto == null || dto.Tiles == null)
             {
                 throw new ArgumentException("Invalid JSON data for TileSet.");
@@ -57,7 +59,7 @@ namespace WFC2D
             var tileSet = new TileSet(dto.Tiles.ToArray())
             {
                 Resolution = dto.Resolution,
-                FolderPaff = dto.FolderPaff
+                FolderPaff = dirName
             };
 
             return tileSet;
@@ -87,7 +89,7 @@ namespace WFC2D
             }
 
             var json = File.ReadAllText(filePath);
-            return Deserialize(json);
+            return Deserialize(json, filePath);
         }
     }
 }

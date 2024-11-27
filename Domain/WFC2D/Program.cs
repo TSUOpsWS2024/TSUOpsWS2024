@@ -76,7 +76,7 @@ namespace WFC2D
             DataConverter.SaveToFile(tileSet, Path.Combine(tileSet.FolderPaff, "data.json"));
 
             var tileSet2 = DataConverter.LoadFromFile(Path.Combine(tileSet.FolderPaff, "data.json"));*/
-            WFCGenerator.GenerateFromJson("..\\..\\..\\TileSets\\Test", 100, 200, 0, 42);
+            WFCGenerator.GenerateFromJson("..\\..\\..\\TileSets\\Test\\data.json", 100, 200, 0, 42);
         }
     }
 }

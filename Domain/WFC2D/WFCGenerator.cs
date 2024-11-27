@@ -85,9 +85,9 @@ namespace WFC2D
         /// <param name="areaW">Ширина области.</param>
         /// <param name="outerTileId">Идентификатор внешнего тайла.</param>
         /// <param name="seed">Сид для генератора случайных чисел.</param>
-        public static void GenerateFromJson(string tileSetName, int areaH, int areaW, int outerTileId, int seed)
+        public static void GenerateFromJson(string tileSetPath, int areaH, int areaW, int outerTileId, int seed)
         {
-            var tileSet = DataConverter.LoadFromFile(Path.Join(tileSetName, "data.json"));
+            var tileSet = DataConverter.LoadFromFile(tileSetPath);
             Generate(tileSet, areaH, areaW, outerTileId, seed);
         }
 
