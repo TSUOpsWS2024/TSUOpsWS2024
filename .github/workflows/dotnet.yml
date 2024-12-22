@@ -28,16 +28,15 @@ jobs:
 
       - name: Build projects
         run: |
-          ls ./
           dotnet build ./Domain/WFC2D/WFC2D.csproj --configuration Release
-          dotnet build ./Tests/Tests/Tests.csproj --configuration Release
+          #dotnet build ./Tests/Tests/Tests.csproj --configuration Release
           dotnet build ./Web.Api/Web.Api/Web.Api.csproj --configuration Release
           dotnet build ./Web.Client/Web.Client/Web.Client.csproj --configuration Release
           echo "Building. ok"
 
       - name: Run unit tests
         run: |
-          dotnet test ./Tests/Tests.csproj --configuration Release --no-build --verbosity normal
+          dotnet test ./Tests/Tests/Tests.csproj --configuration Release --no-build --verbosity normal
           echo "Testing. ok"
 
   deploy:
