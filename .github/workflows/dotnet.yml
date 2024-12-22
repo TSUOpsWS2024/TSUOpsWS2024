@@ -15,14 +15,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'  # Specify the .NET version you are using
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build projects
+        run: |
+          dotnet build ./Domain/Domain.csproj --configuration Release
+          dotnet build ./Tests/Tests.csproj --configuration Release
+          dotnet build ./Web.Api/Web.Api.csproj --configuration Release
+          dotnet build ./Web.Client/Web.Client.csproj --configuration Release
+          echo "Building. ok"
+
+      - name: Run unit tests
+        run: |
+          dotnet test ./Tests/Tests.csproj --configuration Release --no-build --verbosity normal
+          echo "Testing. ok"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'  # Specify the .NET version you are using
+
+      - name: Publish Web Client
+        run: dotnet publish ./Web.Client/Web.Client.csproj --configuration Release --output ./publish
+
+      - name: Deploy Web Client
+        run: |
+          # Add your deployment commands here
+          # For example, if you're deploying to Azure, you might use:
+          # az webapp deploy --resource-group <your-resource-group> --name <your-app-name> --src-path ./publish
+          echo "Deploying Web Client..."
