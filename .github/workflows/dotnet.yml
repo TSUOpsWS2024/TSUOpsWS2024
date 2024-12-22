@@ -28,6 +28,7 @@ jobs:
 
       - name: Build projects
         run: |
+          ls ./
           dotnet build ./Domain/Domain.csproj --configuration Release
           dotnet build ./Tests/Tests.csproj --configuration Release
           dotnet build ./Web.Api/Web.Api.csproj --configuration Release
